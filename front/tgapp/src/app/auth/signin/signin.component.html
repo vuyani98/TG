@@ -1,7 +1,7 @@
 <div id="signin">
 
-  <img src="../../../assets/images/blue.png" alt="" height="160px">
-  <div class="container" style="display: flex; flex-wrap: wrap-reverse;">
+  <img id="logo" src="../../../assets/images/blue.png" alt="" height="160px">
+  <div class="container" style="display: flex; flex-wrap: nowrap;">
 
     <div id="left" class="col-md-6 col-lg-6">
       <img src="../../../assets/images/security.svg" alt="" height="100%">
@@ -18,11 +18,11 @@
 
         <div class="input-container">
           <p>Password</p>
-          <input type="text">
+          <input type="password">
         </div>
 
         <div class="input-btn">
-          <button type="submit">Log In</button>
+          <button type="submit">Log In</button> <a routerLink="/signup">Don't have a account yet?</a>
         </div>
 
       </form>
