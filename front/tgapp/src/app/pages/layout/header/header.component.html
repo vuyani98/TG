@@ -1,4 +1,5 @@
-<div id="header">
+<div id="nav-container" style="margin: 0; background: linear-gradient(45deg, #040e28, #071c54)">
+  <div id="header">
 
     <div class="left">
       <div id="logo">
@@ -12,13 +13,20 @@
         <a>+27 101 402 628</a>
       </div>
 
+
+
       <div id="menu">
         <ul>
           <li>
             <a routerLink="" routerLinkActive="active">HOME</a>
           </li>
           <li>
-            <a routerLink="" routerLinkActive="active">PRODUCTS</a>
+            <a routerLink="" routerLinkActive="active">
+              PRODUCTS
+              <span (click)="mega_menu()">
+                 <img src="../../../../assets/images/icons8-sort-down-50.png" height="16px" style="margin-top: -4px;">
+              </span>
+            </a>
           </li>
           <li>
             <a routerLink="" routerLinkActive="active">ACCOUNT</a>
@@ -29,13 +37,105 @@
         </ul>
       </div>
 
+
       <div id="search">
         <form action="">
-          <input type="text" placeholder="SEARCH">
-          <button type="submit"></button>
+          <input type="text" placeholder="SEARCH PRODUCTS">
+          <button type="submit"><img src="../../../../assets/images/search.png" height="30px"></button>
         </form>
       </div>
 
     </div>
+
+  </div>
+</div>
+
+
+<div id="mega-menu" [ngStyle]="{display : mega_menu_display}">
+
+  <h4 class="heading">Products</h4>
+
+  <div class="mega-menu-info">
+    <div class="catergories col-4">
+
+      <div class="item" *ngFor="let cat of catergories | keyvalue">
+        <div>
+          {{ cat.key }}
+        </div>
+        <div class="arrow" (click)="subs(cat.value)">
+          >
+        </div>
+      </div>
+
+    </div>
+
+    <div class="subcatergories col-4">
+      <div class="item" *ngFor="let sub of subcatergories | keyvalue">
+        <div>
+          {{ sub.key }}
+        </div>
+        <div class="arrow" (click)="prods(sub.value)">
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="products col-4">
+      <ul>
+        <li *ngFor="let product of products">
+          {{product}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div id="mobile-menu">
+
+  <div class="top">
+
+    <div class="left col-4">
+      <div class="icon">
+        <span class="burger" >
+          <div class="burger-menu"></div>
+        </span>
+      </div>
+      <div class="title">MENU</div>
+    </div>
+
+    <div class="center col-4">
+
+      <div id="logo">
+        <img src="../../../../assets/images/white.png" alt="" height="65px">
+      </div>
+
+    </div>
+
+    <div class="right col-4">
+      <div class="icon"> <img src="../../../../assets/images/cart.png" height="30px"> </div>
+      <div class="title">CART</div>
+    </div>
+
+  </div>
+
+  <div class="bottom">
+
+    <div class="left col-4">
+      <div class="icon"> <img src="../../../../assets/images/account.png" height="30px"> </div>
+      <div class="title">ACCOUNT</div>
+    </div>
+
+    <div class="center col-4">
+      <div class="icon"> <img src="../../../../assets/images/icons8-sort-down-50.png" height="30px"> </div>
+      <div class="title">PRODUCTS</div>
+    </div>
+
+    <div class="right col-4">
+      <div class="icon"> <img src="../../../../assets/images/white-search.png"height="30px"> </div>
+      <div class="title">SEARCH</div>
+    </div>
+
+  </div>
 
 </div>
