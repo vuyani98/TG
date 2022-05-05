@@ -61,6 +61,9 @@
         border: none
         background: none
 
+      ::placeholder
+        color: #13234E
+
 #mega-menu
   background: linear-gradient(90deg, #040e28, #071c54)
   color: white
@@ -134,26 +137,65 @@
     .burger-menu::before
         content: ''
         display: block
-        width: 40px
+        width: 30px
         height: 3px
-        box-shadow: 20px -16px 0 0 white
+        box-shadow: 0px -16px 0 0 white
 
     .burger-menu
         height: 3px
-        width: 40px
-        margin:55px 0 0 20px
-        box-shadow: 20px -8px 0 0 white
+        width: 30px
+        margin: auto
+        box-shadow: 0px -8px 0 0 white
 
     .burger-menu::after
         content: ''
         display: block
-        width: 40px
+        width: 30px
         height: 3px
-        box-shadow: 20px -3px 0 0 white
+        box-shadow: 0px -3px 0 0 white
 
   .burger:hover
     opacity: 0.7
 
+
+.menu-popup, .cart-popup, .products-popup, .search-popup
+  height: fit-content
+  width: 100%
+  box-shadow: 1px 19px 16px 4px #8080804f
+  background: linear-gradient(90deg, #040e28, #071c54)
+  color: white
+  position: fixed
+  margin-top: 85px
+  text-align: center
+  padding: 20px
+  font: smaller "Montserrat"
+
+  ul
+    padding-inline-start: 0
+    li
+      margin: 10px
+      list-style: none
+
+.products-popup, .search-popup
+  margin-top: auto
+  margin-bottom: 73px
+  bottom: 0
+  box-shadow: 1px -19px 16px 4px #8080804f
+
+.search-popup
+  form
+    border: 1px solid white
+    border-radius: 25px
+    color: white
+    padding: 5px
+    input, button
+      background: none
+      border: none
+      color: white
+    input:focus
+      outline: none
+    ::placeholder
+      color: white
 
 @media (max-width: 744px)
   #nav-container
