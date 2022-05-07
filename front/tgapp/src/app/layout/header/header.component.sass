@@ -65,6 +65,8 @@
         color: #13234E
 
 #mega-menu
+  position: absolute
+  width: 100%
   background: linear-gradient(90deg, #040e28, #071c54)
   color: white
   font-family: "Poppins"
@@ -118,7 +120,6 @@
     font: 16px 600 "Montserrat"
 
   .top, .bottom
-    position: fixed
     display: flex
     flex-wrap: nowrap
     justify-content: space-evenly
@@ -132,6 +133,7 @@
 
   .bottom
     bottom: 0
+    position: fixed
 
   .burger
     .burger-menu::before
@@ -164,8 +166,7 @@
   box-shadow: 1px 19px 16px 4px #8080804f
   background: linear-gradient(90deg, #040e28, #071c54)
   color: white
-  position: fixed
-  margin-top: 85px
+  position: absolute
   text-align: center
   padding: 20px
   font: smaller "Montserrat"
