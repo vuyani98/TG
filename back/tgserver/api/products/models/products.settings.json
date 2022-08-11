@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "Products"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product_code": {
+      "type": "string"
+    },
+    "supplier_code": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "retail_price": {
+      "type": "string"
+    },
+    "trade_price": {
+      "type": "string"
+    },
+    "catergories": {
+      "via": "products",
+      "collection": "catergory"
+    }
+  }
+}
