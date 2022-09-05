@@ -17,8 +17,8 @@
       "unique": true
     },
     "products": {
-      "collection": "products",
       "via": "catergories",
+      "collection": "products",
       "dominant": true
     }
   }
