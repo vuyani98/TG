@@ -21,109 +21,145 @@ module.exports = async () => {
 
     CSVTOJSON().fromFile('./data/Surveillance.csv')
                 .then( async (table) => {
-                    let surv = fs.readFileSync('./data/Surveillance.csv', 'utf-8');
+                    //let surv = fs.readFileSync('./data/Surveillance.csv', 'utf-8');
 
-                    table.forEach( async (product) => {
+                    table.forEach(async(product) => {
+                      let name = product['Product Code'];
+                      let catArray = [];
+                      let cater_string = product['Catergories'];
+                      let if_prod = await strapi.query('products');
+                      let catergories = cater_string.split(',');
+                      console.log(catergories);
 
-                        let name = product['Product Code'];
-                        let new_cat;
-                        let catArray = [];
-                        let cater_string = product['Catergories'];
-                        let if_prod = await strapi.query('products');
-                        let catergories = cater_string.split(',');
-                        let prod = await create_product(product, name, if_prod);
+                      //if the product is not empty
+                      if (name){
+                        let prod =  await create_product(product, name, if_prod)
+                        .then(product=> {
+                          return product})
+                        .catch(err => {
+                          //console.log(err);
+                          return err;
+                        });
 
-                        //creating products
-                        if ( prod != null ){
-                          //console.log('step 2: catergories')
-                          //creating catergories
+                        //iterating through catergories, creating them and the products
+
+                        if (prod){
                           for (let i=0; i<catergories.length; i++){
-                            //console.log(catergories[i])
-                            let catergory  = await strapi.query('catergory');
-                            new_cat = await create_cat(i,catergory, catergories[i], prod);
-                            //console.log(new_cat);
-                            //console.log(prod);
+
+                            console.log(`${catergories[i]}`)
+                            let created_cat = await create_cat(catergories[i])
+                            .then(async (cat) => {
+                              console.log(` ${cat.name}`);
+                              if (cat.name){
+                                catArray.push(cat);
+                                console.log(`new cat array : ${catArray}`);
+                                /*if(i == (catergories.length-1)){
+                                  add_cat(if_prod, prod, catArray);
+                                }*/
+                              }
+                              return cat;
+                            })
+                            .catch(err => {
+                              //console.log(err)
+                              return err;
+                            });
+
+                            if (created_cat){
+                              add_cat(if_prod, name, catArray);
+                            }
+
                           }
                         }
+
+
+                      }
+
                     })
                 })
 
 
-};
+}
 
 async function create_product(product, name, if_prod) {
 
-  //console.log('step 1: product');
+  //console.log('step 5: product');
 
   let prod = null;
   let product_exists = false;
 
-  await if_prod.find()
+  return await if_prod.find()
   .then( async(result) => {
     for (let i=0; i<result.length; i++){
       if(name = result[i].product_code){
         product_exists = true;
-        break;
+        console.log('product exists');
+        return result[i];
       }
     }
 
     if(!product_exists){
-
-      if (product['Supplier Code']){
+      console.log('product does not exist')
+      if (product['Product Code']){
         prod = await strapi.services.products.create({
-              supplier_code : product['Supplier Code'],
+              supplier_code : product['Supplier Code'] || 'TG',
               product_code : name,
               description : product.Description,
               retail_price: product['Retail Price'],
               trade_price: product['Trade Price'],
-        })
+        });
+
+        return prod;
       }
     }
   })
-
-  return prod;
-}
-
-
-async function create_cat(i,catergory, catergories, prod){
-  //console.log(`call ${i} for cat: ${catergories}`)
-  //console.log(`creating ${catergories}`);
-  let is_present = false;
-  await catergory.find()
-  .then( async (result) => {
-
-    for (let j=0; j<result.length; j++){
-      if (catergories == result[j].name){
-        is_present = true;
-        console.log(`step 4 : Cat ${result}:exists `);
-        return result[j];
-      }
-    }
-
-    if (!is_present){
-      console.log(`step 4 : Cat ${catergories} does not exist, creating....`);
-      let new_cat = await strapi.query('catergory').create({ name : `${catergories}`, products: []});
-      console.log(`new_cat: ${new_cat}`);
-      return new_cat;
-    }
-  })
-  .then( res => {
-    console.log(`result: ${res}`);
-    add_cat(prod, res);
-  })
-  .catch((err) => {
-    console.log(err);
+  .catch(err => {
+    //console.log(err);
     return err;
   });
 
 }
 
 
-async function add_cat(product, catergory){
-  console.log('add cat called')
-  await strapi.query('products').update({id : product.id}, {categories: product.catergories.push(catergory)})
-  .then(result => {
-    console.log(`adding cat : ${result.id}`)
+async function create_cat(catergory){
+
+  let is_present = false;
+  return await strapi.query('catergory').find()
+  .then( async (result) => {
+
+    for (let j=0; j<result.length; j++){
+      if (catergory == result[j].name){
+        is_present = true;
+        //console.log(`step 4 : Cat ${result[j]}:exists `);
+        return result[j];
+      }
+    }
+
+    if (!is_present){
+      console.log(`is catergory present: ${is_present}`);
+      let new_cat = await strapi.query('catergory').create({ name : `${catergory}`});
+      console.log(`new_cat: ${new_cat}`);
+      return new_cat;
+    }
   })
-  .catch( err => console.log(err));
+  .catch((err) => {
+    //console.log(err);
+    return err;
+  });
+
+}
+
+
+async function add_cat(if_prod, prod, catergories){
+
+  console.log(`Sadd cart called for ${prod}`)
+  await if_prod.update({product_code : prod}, {catergories: catergories})
+  .then(res => {
+    console.log(`creation response: ${res.catergories}`);
+    return res;
+  })
+  .catch(err => {
+    console.log(err)
+    return err;
+  });
+
 }

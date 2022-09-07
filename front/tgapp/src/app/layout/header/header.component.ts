@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,27 +19,45 @@ export class HeaderComponent implements OnInit {
 
   catergories = {
     "Network" : {
-        "Network Cameras" : [ "ColorVu Series", "AcuSense"],
-        "NVR" : ["4-CH NVR", "8-CH NVR"]
+        "Network Cameras" : [ "ColorVu", "AcuSense", "PRO", "Ultra", "Solar", "Special"],
+        "PTZ Cameras" : ["Pro", "Ultra", "Special"],
+        "NVR" : ["4CH", "8CH", "16CH"]
     },
-    "TurboHD" : {},
-    "Display & Control" : {},
-    "Mobile" : {},
-    "Access Control" : {},
-    "Video Intercomm" : {},
-    "Alarm" : {},
-    "Thermal" : {},
-    "Accesories" : {},
-    "Software" : {}
+    "TurboHD" : { "Analogue/Turbo Cameras" : [], "DVR": [] },
+    "Transmission" : {"Switches" : []},
+    "Mobile" : {"Dashcams" : []},
+    "Access Control" : {
+      "Readers" : [],
+      "Fingerprint" : [],
+      "Card Terminals": [],
+      "Face Recognition": [],
+      "Controllers": [],
+      "Electrical Locks": []
+    },
+    "Video Intercomm" : {"IP Series" :[], "Analogue" : [], "Kits" : []},
+    "Alarm" : {"Panels" : [], "Detectors" : [], "Kits" : []},
+    "Accessories" : {
+      "CCTV" : [],
+      "Alarm" : [],
+      "Video Intercomm" : [],
+      "Transmissions": []
+    },
+    "Software" : {"Licenses" : []}
   };
 
   subcatergories = {};
   products = [];
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+    this.router.events.subscribe((val) => {
+      if( this.mega_menu_display != "none"){
+        this.mega_menu_display = "none";
+      }
+    })
   }
 
   // mega menu function

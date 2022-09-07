@@ -21,7 +21,7 @@
             <a routerLink="" routerLinkActive="active">HOME</a>
           </li>
           <li>
-            <a routerLink="" routerLinkActive="active">
+            <a >
               PRODUCTS
               <span (click)="mega_menu()">
                  <img src="../../../../assets/images/icons8-sort-down-50.png" height="16px" style="margin-top: -4px;">
@@ -60,7 +60,7 @@
 
       <div class="item" *ngFor="let cat of catergories | keyvalue">
         <div>
-          {{ cat.key }}
+          <a routerLink="{{cat.key}}">{{ cat.key }}</a>
         </div>
         <div class="arrow" (click)="subs(cat.value)">
           >
