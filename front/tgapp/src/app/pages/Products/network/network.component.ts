@@ -15,6 +15,7 @@ export class NetworkComponent implements OnInit {
     this.products = this.service.getNetworkProducts().subscribe(data => {
       console.log(data);
     });
+    this.service.getImage('DS-2CD2026G2-I 4MM_C');
   }
 
 }

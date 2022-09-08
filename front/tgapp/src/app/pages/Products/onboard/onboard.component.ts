@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PagesService } from '../../pages.service';
 
 @Component({
   selector: 'app-onboard',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnboardComponent implements OnInit {
 
-  constructor() { }
+  products: any
+
+  constructor( private service: PagesService) { }
 
   ngOnInit(): void {
+
+    this.products = this.service.getMobileProducts().subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
