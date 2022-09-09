@@ -12,10 +12,12 @@ export class NetworkComponent implements OnInit {
   constructor( private service: PagesService) { }
 
   ngOnInit(): void {
-    this.products = this.service.getNetworkProducts().subscribe(data => {
-      console.log(data);
+    this.service.getNetworkProducts().subscribe(data => {
+      this.products = data[0].products;
+      console.log(this.products)
     });
-    this.service.getImage('DS-2CD2026G2-I 4MM_C');
+
+
   }
 
 }

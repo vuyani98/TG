@@ -14,18 +14,7 @@ const API_PATH = `${environment.API_PATH}`;
 export class PagesService {
 
 
-  constructor( private http: HttpClient, private img: CloudinaryImage) { }
-
-  getImage(name:string){
-    const cld = new Cloudinary({
-      cloud: {
-        cloudName: 'tgsec'
-      }
-    });
-
-    this.img = cld.image(name);
-    console.log(this.img);
-  }
+  constructor( private http: HttpClient) { }
 
   getNetworkProducts(): Observable<any>{
     return this.http.get(`${API_PATH}/catergories/?name=Network`);

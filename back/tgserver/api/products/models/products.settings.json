@@ -31,6 +31,9 @@
     "catergories": {
       "via": "products",
       "collection": "catergory"
+    },
+    "image_url": {
+      "type": "string"
     }
   }
 }

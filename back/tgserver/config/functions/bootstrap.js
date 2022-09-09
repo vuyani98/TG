@@ -1,3 +1,13 @@
+const cloudinary = require('cloudinary').v2;
+
+// Return "https" URLs by setting secure: true
+cloudinary.config({
+  cloud_name: 'tgsec',
+  api_key: '861521355663492',
+  api_secret: 'deb6vLBQH-pI4v22wVdxOv4KGB8',
+  secure: true
+});
+
 'use strict';
 
 const { createSecureServer } = require('http2');
@@ -15,6 +25,8 @@ const { default: createStrapi } = require('strapi');
 
 module.exports = async () => {
 
+
+  //console.log(cloudinary.config());
   const CSVTOJSON = require('csvtojson');
   const fs = require ('fs');
 
@@ -29,11 +41,17 @@ module.exports = async () => {
                       let cater_string = product['Catergories'];
                       let if_prod = await strapi.query('products');
                       let catergories = cater_string.split(',');
-                      console.log(catergories);
+                      //console.log(catergories);
 
                       //if the product is not empty
                       if (name){
-                        let prod =  await create_product(product, name, if_prod)
+
+
+                        let img = name.replace(/ /g,'_');
+                        let image = img.replace(/\(|\)/g, '_');
+                        let image_url = 'https://res.cloudinary.com/tgsec/image/upload/Surveillance/' + image + '.png'
+
+                        let prod =  await create_product(product, name,image_url, if_prod)
                         .then(product=> {
                           return product})
                         .catch(err => {
@@ -46,13 +64,13 @@ module.exports = async () => {
                         if (prod){
                           for (let i=0; i<catergories.length; i++){
 
-                            console.log(`${catergories[i]}`)
+                            //console.log(`${catergories[i]}`)
                             let created_cat = await create_cat(catergories[i])
                             .then(async (cat) => {
                               console.log(` ${cat.name}`);
                               if (cat.name){
                                 catArray.push(cat);
-                                console.log(`new cat array : ${catArray}`);
+                                //console.log(`new cat array : ${catArray}`);
                                 /*if(i == (catergories.length-1)){
                                   add_cat(if_prod, prod, catArray);
                                 }*/
@@ -80,7 +98,7 @@ module.exports = async () => {
 
 }
 
-async function create_product(product, name, if_prod) {
+async function create_product(product, name, image_url, if_prod) {
 
   //console.log('step 5: product');
 
@@ -92,13 +110,13 @@ async function create_product(product, name, if_prod) {
     for (let i=0; i<result.length; i++){
       if(name = result[i].product_code){
         product_exists = true;
-        console.log('product exists');
+        //console.log('product exists');
         return result[i];
       }
     }
 
     if(!product_exists){
-      console.log('product does not exist')
+      //console.log('product does not exist')
       if (product['Product Code']){
         prod = await strapi.services.products.create({
               supplier_code : product['Supplier Code'] || 'TG',
@@ -106,6 +124,7 @@ async function create_product(product, name, if_prod) {
               description : product.Description,
               retail_price: product['Retail Price'],
               trade_price: product['Trade Price'],
+              image_url: image_url
         });
 
         return prod;
@@ -135,9 +154,9 @@ async function create_cat(catergory){
     }
 
     if (!is_present){
-      console.log(`is catergory present: ${is_present}`);
+      //console.log(`is catergory present: ${is_present}`);
       let new_cat = await strapi.query('catergory').create({ name : `${catergory}`});
-      console.log(`new_cat: ${new_cat}`);
+      //console.log(`new_cat: ${new_cat}`);
       return new_cat;
     }
   })
@@ -151,14 +170,14 @@ async function create_cat(catergory){
 
 async function add_cat(if_prod, prod, catergories){
 
-  console.log(`Sadd cart called for ${prod}`)
+  //console.log(`Sadd cart called for ${prod}`)
   await if_prod.update({product_code : prod}, {catergories: catergories})
   .then(res => {
-    console.log(`creation response: ${res.catergories}`);
+    //console.log(`creation response: ${res.catergories}`);
     return res;
   })
   .catch(err => {
-    console.log(err)
+    //console.log(err)
     return err;
   });
 
