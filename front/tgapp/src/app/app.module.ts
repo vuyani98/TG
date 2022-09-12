@@ -6,11 +6,13 @@ import {CloudinaryModule} from '@cloudinary/ng';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { LazyimgDirective } from './lazyimg.directive';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LazyimgDirective
   ],
   imports: [
     BrowserModule,

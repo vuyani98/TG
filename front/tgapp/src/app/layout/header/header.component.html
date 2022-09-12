@@ -58,11 +58,11 @@
   <div class="mega-menu-info">
     <div class="catergories col-4">
 
-      <div class="item" *ngFor="let cat of catergories | keyvalue">
+      <div class="item" *ngFor="let cat of catergories | keyvalue" (mouseover)="subs(cat.value)">
         <div>
           <a routerLink="{{cat.key}}">{{ cat.key }}</a>
         </div>
-        <div class="arrow" (click)="subs(cat.value)">
+        <div class="arrow" >
           >
         </div>
       </div>
@@ -70,11 +70,11 @@
     </div>
 
     <div class="subcatergories col-4">
-      <div class="item" *ngFor="let sub of subcatergories | keyvalue">
+      <div class="item" *ngFor="let sub of subcatergories | keyvalue" (mouseover)="prods(sub.value)">
         <div>
           {{ sub.key }}
         </div>
-        <div class="arrow" (click)="prods(sub.value)">
+        <div class="arrow" >
           >
         </div>
       </div>
