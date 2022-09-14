@@ -52,5 +52,9 @@ export class NetworkComponent implements OnInit {
 
   }
 
+  close_prod(){
+    this.one_product_display = 'none'
+  }
+
 }
 

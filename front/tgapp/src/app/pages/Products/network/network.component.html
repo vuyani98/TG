@@ -71,6 +71,7 @@
   </div>
 
   <div class="product-info">
+    <div (click)="close_prod()" style="float: right">X</div>
     <h3>{{one_product.product_code}}</h3>
     <p>{{one_product.supplier_code}}</p>
     <br>
@@ -78,10 +79,10 @@
       <p>{{one_product.description}}</p>
     </div>
     <div>
-      <h5>{{one_product.price}}</h5>
+      <h5 style="margin-top:50px">{{one_product.price}}</h5>
       <div class="buttons">
-        <button>Add to cart</button>
-        <button>Checkout</button>
+        <button class="add-to-cart">Add to cart</button>
+        <button class="checkout">Checkout</button>
       </div>
     </div>
   </div>
