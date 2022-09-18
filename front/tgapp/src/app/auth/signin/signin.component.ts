@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder } from '@angular/forms';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  loginForm = this.formBuilder.group({
+    identifier: '',
+    password: ''
+  })
+
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  onLogin():void{
+
+    this.authService.login(this.loginForm.value).subscribe(res => {
+      return res;
+    })
+
+    this.loginForm.reset();
   }
 
 }

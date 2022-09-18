@@ -9,16 +9,16 @@
 
     <div id="right" class="col-md-6 col-lg-6">
       <h3>Log In</h3>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
         <div class="input-container">
           <p>Email Address</p>
-          <input type="text">
+          <input id="identifier" type="text" formControlName="identifier">
         </div>
 
         <div class="input-container">
           <p>Password</p>
-          <input type="password">
+          <input id="password" type="password" formControlName="password">
         </div>
 
         <div class="input-btn">

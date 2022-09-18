@@ -2,8 +2,8 @@
   <div id="header">
 
     <div class="left">
-      <div id="logo">
-        <img src="../../../../assets/images/white.png" alt="" height="82px">
+      <div id="logo" >
+        <img (click)="goHome()" src="../../../../assets/images/white.png" alt="" height="82px">
       </div>
     </div>
 
@@ -29,7 +29,7 @@
             </a>
           </li>
           <li>
-            <a routerLink="" routerLinkActive="active">ACCOUNT</a>
+            <a routerLink="/auth/login" routerLinkActive="active">ACCOUNT</a>
           </li>
           <li>
             <a routerLink="" routerLinkActive="active">CART</a>

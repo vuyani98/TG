@@ -83,6 +83,11 @@ export class HeaderComponent implements OnInit {
     this.products = products
   }
 
+  //re-route to home
+  goHome(){
+    this.router.navigateByUrl('/')
+  }
+
   //pop ups function
   show_popup(name:string){
 

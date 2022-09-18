@@ -9,11 +9,16 @@
 
     <div id="right" class="col-xs-12 col-md-6 col-lg-6">
       <h3>Sign Up</h3>
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <div class="input-container">
           <p>Email Address</p>
-          <input type="text">
+          <input id="email" type="text" formControlName="email" >
+        </div>
+
+        <div class="input-container">
+          <p>Username</p>
+          <input id="username" type="text" formControlName="username" >
         </div>
 
         <div class="input-container">
@@ -23,11 +28,11 @@
 
         <div class="input-container">
           <p>Confirm Password</p>
-          <input type="password">
+          <input id="password" type="password" formControlName="password">
         </div>
 
         <div style="margin-top:20px;">
-          User <input type="checkbox"> Reseller <input type="checkbox">
+          Reseller <input id="isReseller" type="checkbox" formControlName="isReseller">
           <br>
           <br>
           <span style="font-size: 13px;"> I would like to receive emails from TG Security Systems <input type="checkbox"></span>
