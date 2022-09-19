@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { LazyimgDirective } from './lazyimg.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { LazyimgDirective } from './lazyimg.directive';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CloudinaryModule
+    CloudinaryModule,
+    BrowserAnimationsModule
   ],
   providers: [CloudinaryModule],
   bootstrap: [AppComponent]
