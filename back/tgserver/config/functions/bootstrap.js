@@ -30,8 +30,8 @@ module.exports = async () => {
   const CSVTOJSON = require('csvtojson');
   const fs = require ('fs');
 
-
-    CSVTOJSON().fromFile('./data/Surveillance.csv')
+  //add camera products
+  /*CSVTOJSON().fromFile('./data/Surveillance.csv')
                 .then( async (table) => {
                     //let surv = fs.readFileSync('./data/Surveillance.csv', 'utf-8');
 
@@ -45,8 +45,7 @@ module.exports = async () => {
 
                       //if the product is not empty
                       if (name){
-
-
+                        console.log(name)
                         let img = name.replace(/ /g,'_');
                         let image = img.replace(/\(|\)/g, '_');
                         let image_url = 'https://res.cloudinary.com/tgsec/image/upload/Surveillance/' + image + '.png'
@@ -71,9 +70,71 @@ module.exports = async () => {
                               if (cat.name){
                                 catArray.push(cat);
                                 //console.log(`new cat array : ${catArray}`);
-                                /*if(i == (catergories.length-1)){
-                                  add_cat(if_prod, prod, catArray);
-                                }*/
+                                //if(i == (catergories.length-1)){
+                                  //add_cat(if_prod, prod, catArray);
+                                //}
+                              }
+                              return cat;
+                            })
+                            .catch(err => {
+                              //console.log(err)
+                              return err;
+                            });
+
+                            if (created_cat){
+                              add_cat(if_prod, name, catArray);
+                            }
+
+                          }
+                        }
+
+
+                      }
+
+                    })
+                }) */ 
+
+  //add alarm products
+   /*CSVTOJSON().fromFile('./data/alarm.csv')
+                .then( async (table) => {
+
+                    table.forEach(async(product) => {
+                      let name = product['Product Code'];
+                      let catArray = [];
+                      let cater_string = product['Catergories'];
+                      let if_prod = await strapi.query('products');
+                      let catergories = cater_string.split(',');
+                      //console.log(catergories);
+
+                      //if the product is not empty
+                      if (name){
+                        let img = name.replace(/ /g,'_');
+                        let image = img.replace(/\(|\)/g, '_');
+                        let image_url = 'https://res.cloudinary.com/tgsec/image/upload/Surveillance/' + image + '.png'
+
+                        let prod =  await create_product(product, name,image_url, if_prod)
+                        .then(product=> {
+                          //console.log(product)
+                          return product})
+                        .catch(err => {
+                          //console.log(err);
+                          return err;
+                        });
+
+                        //iterating through catergories, creating them and the products
+
+                        if (prod){
+                          for (let i=0; i<catergories.length; i++){
+
+                            //console.log(`${catergories[i]}`)
+                            let created_cat = await create_cat(catergories[i])
+                            .then(async (cat) => {
+                              console.log(` ${cat.name}`);
+                              if (cat.name){
+                                catArray.push(cat);
+                                //console.log(`new cat array : ${catArray}`);
+                                //if(i == (catergories.length-1)){
+                                  //add_cat(if_prod, prod, catArray); 
                               }
                               return cat;
                             })
@@ -94,8 +155,193 @@ module.exports = async () => {
 
                     })
                 })
+              */
+
+    //add access products
+    /*CSVTOJSON().fromFile('./data/access.csv')
+                .then( async (table) => {
+
+                    table.forEach(async(product) => {
+                      let name = product['Product Code'];
+                      let catArray = [];
+                      let cater_string = product['Catergories'];
+                      let if_prod = await strapi.query('products');
+                      let catergories = cater_string.split(',');
+                      //console.log(catergories);
+
+                      //if the product is not empty
+                      if (name){
+                        let img = name.replace(/ /g,'_');
+                        let image = img.replace(/\(|\)/g, '_');
+                        let image_url = 'https://res.cloudinary.com/tgsec/image/upload/Surveillance/' + image + '.png'
+
+                        let prod =  await create_product(product, name,image_url, if_prod)
+                        .then(product=> {
+                          //console.log(product)
+                          return product})
+                        .catch(err => {
+                          //console.log(err);
+                          return err;
+                        });
+
+                        //iterating through catergories, creating them and the products
+
+                        if (prod){
+                          for (let i=0; i<catergories.length; i++){
+
+                            //console.log(`${catergories[i]}`)
+                            let created_cat = await create_cat(catergories[i])
+                            .then(async (cat) => {
+                              console.log(` ${cat.name}`);
+                              if (cat.name){
+                                catArray.push(cat);
+                                //console.log(`new cat array : ${catArray}`);
+                                //if(i == (catergories.length-1)){
+                                  //add_cat(if_prod, prod, catArray); 
+                              }
+                              return cat;
+                            })
+                            .catch(err => {
+                              //console.log(err)
+                              return err;
+                            });
+
+                            if (created_cat){
+                              add_cat(if_prod, name, catArray);
+                            }
+
+                          }
+                        }
 
 
+                      }
+
+                    })
+                }) */
+
+      //add intercomm products
+      /*CSVTOJSON().fromFile('./data/Intercomm.csv')
+                .then( async (table) => {
+
+                    table.forEach(async(product) => {
+                      let name = product['Product Code'];
+                      let catArray = [];
+                      let cater_string = product['Catergories'];
+                      let if_prod = await strapi.query('products');
+                      let catergories = cater_string.split(',');
+                      //console.log(catergories);
+
+                      //if the product is not empty
+                      if (name){
+                        let img = name.replace(/ /g,'_');
+                        let image = img.replace(/\(|\)/g, '_');
+                        let image_url = 'https://res.cloudinary.com/tgsec/image/upload/Surveillance/' + image + '.png'
+
+                        let prod =  await create_product(product, name,image_url, if_prod)
+                        .then(product=> {
+                          //console.log(product)
+                          return product})
+                        .catch(err => {
+                          //console.log(err);
+                          return err;
+                        });
+
+                        //iterating through catergories, creating them and the products
+
+                        if (prod){
+                          for (let i=0; i<catergories.length; i++){
+
+                            //console.log(`${catergories[i]}`)
+                            let created_cat = await create_cat(catergories[i])
+                            .then(async (cat) => {
+                              console.log(` ${cat.name}`);
+                              if (cat.name){
+                                catArray.push(cat);
+                                //console.log(`new cat array : ${catArray}`);
+                                //if(i == (catergories.length-1)){
+                                  //add_cat(if_prod, prod, catArray); 
+                              }
+                              return cat;
+                            })
+                            .catch(err => {
+                              //console.log(err)
+                              return err;
+                            });
+
+                            if (created_cat){
+                              add_cat(if_prod, name, catArray);
+                            }
+
+                          }
+                        }
+
+
+                      }
+
+                    })
+                }) */
+
+      //add accessories
+      /*CSVTOJSON().fromFile('./data/accessories.csv')
+                .then( async (table) => {
+
+                    table.forEach(async(product) => {
+                      let name = product['Product Code'];
+                      let catArray = [];
+                      let cater_string = product['Catergories'];
+                      let if_prod = await strapi.query('products');
+                      let catergories = cater_string.split(',');
+                      //console.log(catergories);
+
+                      //if the product is not empty
+                      if (name){
+                        let img = name.replace(/ /g,'_');
+                        let image = img.replace(/\(|\)/g, '_');
+                        let image_url = 'https://res.cloudinary.com/tgsec/image/upload/Surveillance/' + image + '.png'
+
+                        let prod =  await create_product(product, name,image_url, if_prod)
+                        .then(product=> {
+                          //console.log(product)
+                          return product})
+                        .catch(err => {
+                          //console.log(err);
+                          return err;
+                        });
+
+                        //iterating through catergories, creating them and the products
+
+                        if (prod){
+                          for (let i=0; i<catergories.length; i++){
+
+                            //console.log(`${catergories[i]}`)
+                            let created_cat = await create_cat(catergories[i])
+                            .then(async (cat) => {
+                              console.log(` ${cat.name}`);
+                              if (cat.name){
+                                catArray.push(cat);
+                                //console.log(`new cat array : ${catArray}`);
+                                //if(i == (catergories.length-1)){
+                                  //add_cat(if_prod, prod, catArray); 
+                              }
+                              return cat;
+                            })
+                            .catch(err => {
+                              //console.log(err)
+                              return err;
+                            });
+
+                            if (created_cat){
+                              add_cat(if_prod, name, catArray);
+                            }
+
+                          }
+                        }
+
+
+                      }
+
+                    })
+                }) */
 }
 
 async function create_product(product, name, image_url, if_prod) {
@@ -108,9 +354,9 @@ async function create_product(product, name, image_url, if_prod) {
   return await if_prod.find()
   .then( async(result) => {
     for (let i=0; i<result.length; i++){
-      if(name = result[i].product_code){
+      if(name == result[i].product_code){
         product_exists = true;
-        //console.log('product exists');
+        console.log(`product ${name} exists`);
         return result[i];
       }
     }
@@ -173,7 +419,7 @@ async function add_cat(if_prod, prod, catergories){
   //console.log(`Sadd cart called for ${prod}`)
   await if_prod.update({product_code : prod}, {catergories: catergories})
   .then(res => {
-    //console.log(`creation response: ${res.catergories}`);
+    console.log(`creation response: ${res.catergories}`);
     return res;
   })
   .catch(err => {
