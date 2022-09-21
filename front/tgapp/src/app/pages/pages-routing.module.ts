@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'TurboHD', component: TurboComponent},
   { path: 'Transmission', component: TransmissionComponent},
   { path: 'Mobile', component: OnboardComponent},
-  { path: 'Access%Control', component: AccessControlComponent},
+  { path: 'Access Control', component: AccessControlComponent},
   { path: 'Video%Intercomm', component: VideoIntercomComponent},
   { path: 'Alarm', component: AlarmComponent},
   { path: 'Accessories', component: AccessoriesComponent},

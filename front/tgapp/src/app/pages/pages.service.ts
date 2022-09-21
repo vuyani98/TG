@@ -28,4 +28,8 @@ export class PagesService {
     return this.http.get(`${API_PATH}/catergories/?name=Dashcam`);
   }
 
+  getAccessControl(): Observable<any>{
+    return this.http.get(`${API_PATH}/catergories/?name= Access Control`)
+  }
+
 }
