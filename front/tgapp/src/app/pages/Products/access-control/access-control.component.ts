@@ -23,7 +23,7 @@ export class AccessControlComponent implements OnInit {
   constructor(private service: PagesService) {}
 
   ngOnInit(): void {
-    this.service.getAccessControl().subscribe(data => {
+    this.service.products_using_name('Access Control').subscribe(data => {
       console.log(data)
       this.products = data[0].products;
       console.log(this.products)

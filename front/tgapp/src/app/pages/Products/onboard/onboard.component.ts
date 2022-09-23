@@ -14,7 +14,7 @@ export class OnboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.products = this.service.getMobileProducts().subscribe(data => {
+    this.products = this.service.products_using_name('Dashcam').subscribe(data => {
       console.log(data);
     });
   }

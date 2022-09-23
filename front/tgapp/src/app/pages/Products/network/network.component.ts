@@ -21,7 +21,7 @@ export class NetworkComponent implements OnInit {
   constructor( private service: PagesService) { }
 
   ngOnInit(): void {
-    this.service.getNetworkProducts().subscribe(data => {
+    this.service.products_using_name('Network').subscribe(data => {
       this.products = data[0].products;
       console.log(this.products)
     });

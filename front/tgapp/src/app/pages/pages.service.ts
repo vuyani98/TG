@@ -16,20 +16,8 @@ export class PagesService {
 
   constructor( private http: HttpClient) { }
 
-  getNetworkProducts(): Observable<any>{
-    return this.http.get(`${API_PATH}/catergories/?name=Network`);
-  }
-
-  getTurboProducts(): Observable<any>{
-    return this.http.get(`${API_PATH}/catergories/?name=Analogue/Turbo`);
-  }
-
-  getMobileProducts(): Observable<any>{
-    return this.http.get(`${API_PATH}/catergories/?name=Dashcam`);
-  }
-
-  getAccessControl(): Observable<any>{
-    return this.http.get(`${API_PATH}/catergories/?name= Access Control`)
+  products_using_name(name:string):Observable<any>{
+    return this.http.get(`${API_PATH}/catergories/?name=${name}`)
   }
 
 }

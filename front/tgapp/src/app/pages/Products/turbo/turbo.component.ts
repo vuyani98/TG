@@ -12,7 +12,7 @@ export class TurboComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.products = this.service.getTurboProducts().subscribe(data => {
+    this.products = this.service.products_using_name('Analogue/Turbo').subscribe(data => {
       console.log(data);
     });
   }
