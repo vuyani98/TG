@@ -30,6 +30,14 @@ export class AccessControlComponent implements OnInit {
     });
   }
 
+  show_subCatergory(sub:string){
+    console.log('called')
+    this.service.products_using_contains(sub).subscribe(data => {
+      this.products = data;
+      console.log(this.products)
+    });
+  }
+
   show_one(id:number){
 
     for (let i=0; i<this.products.length; i++){

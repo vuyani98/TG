@@ -29,6 +29,14 @@ export class NetworkComponent implements OnInit {
 
   }
 
+  show_subCatergory(sub:string){
+    console.log('called')
+    this.service.products_using_name(sub).subscribe(data => {
+      this.products = data[0].products;
+      console.log(this.products)
+    });
+  }
+
   show_one(id:number){
 
     for (let i=0; i<this.products.length; i++){

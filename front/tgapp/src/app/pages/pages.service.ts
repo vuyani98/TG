@@ -20,4 +20,8 @@ export class PagesService {
     return this.http.get(`${API_PATH}/catergories/?name=${name}`)
   }
 
+  products_using_contains(name:string):Observable<any>{
+    return this.http.get(`${API_PATH}/products?description_contains=name`)
+  }
+
 }
