@@ -70,7 +70,7 @@
     </div>
 
     <div class="subcatergories col-4">
-      <div class="item" *ngFor="let sub of subcatergories | keyvalue" (mouseover)="prods(sub.value)">
+      <div class="item" *ngFor="let sub of subcatergories | keyvalue" (mouseover)="prods(sub.value)" (click)="getProducts(sub.key)">
         <div>
           {{ sub.key }}
         </div>

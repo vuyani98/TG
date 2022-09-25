@@ -12,6 +12,7 @@ import { VideoIntercomComponent } from './Products/video-intercom/video-intercom
 import { AlarmComponent } from './Products/alarm/alarm.component';
 import { AccessoriesComponent } from './Products/accessories/accessories.component';
 import { SoftwareComponent } from './Products/software/software.component';
+import { ProductsComponent } from './Products/products/products.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SoftwareComponent } from './Products/software/software.component';
     AlarmComponent,
     AccessoriesComponent,
     SoftwareComponent,
+    ProductsComponent,
   ],
   imports: [
     CommonModule,

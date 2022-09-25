@@ -25,8 +25,6 @@ export class NetworkComponent implements OnInit {
       this.products = data[0].products;
       console.log(this.products)
     });
-
-
   }
 
   show_subCatergory(sub:string){

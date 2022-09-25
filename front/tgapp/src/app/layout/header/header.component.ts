@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     },
     "TurboHD" : { "Analogue/Turbo Cameras" : [], "DVR": [] },
     "Transmission" : {"Switches" : []},
-    "Mobile" : {"Dashcams" : []},
+    "Mobile" : {"Dashcam" : []},
     "Access Control" : {
       "Readers" : [],
       "Fingerprint" : [],
@@ -34,14 +34,9 @@ export class HeaderComponent implements OnInit {
       "Controllers": [],
       "Electrical Locks": []
     },
-    "Video Intercomm" : {"IP Series" :[], "Analogue" : [], "Kits" : []},
+    "Video Intercomm" : {},
     "Alarm" : {"Panels" : [], "Detectors" : [], "Kits" : []},
-    "Accessories" : {
-      "CCTV" : [],
-      "Alarm" : [],
-      "Video Intercomm" : [],
-      "Transmissions": []
-    },
+    "Accessories" : {},
     "Software" : {"Licenses" : []}
   };
 
@@ -49,11 +44,12 @@ export class HeaderComponent implements OnInit {
   products = [];
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.router.events.subscribe((val) => {
+
       if( this.mega_menu_display != "none"){
         this.mega_menu_display = "none";
       }
@@ -86,6 +82,10 @@ export class HeaderComponent implements OnInit {
   //re-route to home
   goHome(){
     this.router.navigateByUrl('/')
+  }
+
+  getProducts(cat:string){
+    this.router.navigateByUrl(`/products/?cat=${cat}`);
   }
 
   //pop ups function

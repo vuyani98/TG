@@ -10,6 +10,7 @@ import { VideoIntercomComponent } from './Products/video-intercom/video-intercom
 import { AlarmComponent } from './Products/alarm/alarm.component';
 import { AccessoriesComponent } from './Products/accessories/accessories.component';
 import { SoftwareComponent } from './Products/software/software.component';
+import { ProductsComponent } from './Products/products/products.component';
 
 
 const routes: Routes = [
@@ -19,10 +20,11 @@ const routes: Routes = [
   { path: 'Transmission', component: TransmissionComponent},
   { path: 'Mobile', component: OnboardComponent},
   { path: 'Access Control', component: AccessControlComponent},
-  { path: 'Video%Intercomm', component: VideoIntercomComponent},
+  { path: 'Video Intercomm', component: VideoIntercomComponent},
   { path: 'Alarm', component: AlarmComponent},
   { path: 'Accessories', component: AccessoriesComponent},
-  { path: 'Software', component: SoftwareComponent}
+  { path: 'Software', component: SoftwareComponent},
+  { path: 'products/', component: ProductsComponent}
 
 ];
 

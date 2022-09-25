@@ -1,28 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute} from '@angular/router';
 import { PagesService } from '../../pages.service';
 
 @Component({
-  selector: 'app-transmission',
-  templateUrl: './transmission.component.html',
-  styleUrls: ['./transmission.component.sass']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.sass']
 })
-export class TransmissionComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
-  products: any;
-  catergories: any
-  one_product = {
-    image_url: '',
-    product_code: '',
-    price: '',
-    description:'',
-    supplier_code: ''
-  }
-  one_product_display: string = 'none'
+   header:string = '';
+   products: any;
+   catergories: any
+   one_product = {
+     image_url: '',
+     product_code: '',
+     price: '',
+     description:'',
+     supplier_code: ''
+   }
+   one_product_display: string = 'none'
 
-  constructor(private service: PagesService) { }
+  constructor(private router: Router, private actRoute: ActivatedRoute, private service : PagesService) { }
 
   ngOnInit(): void {
-    this.service.products_using_name('Switches').subscribe(data => {
+    this.actRoute.queryParams.subscribe(params => {
+      this.header = params['cat'];
+      this.get_products()
+    })
+  }
+
+  get_products(){
+    this.service.catergories_using_contains(this.header).subscribe(data => {
       this.products = data[0].products
     })
   }
@@ -49,7 +58,6 @@ export class TransmissionComponent implements OnInit {
   close_prod(){
     this.one_product_display = 'none'
   }
-
 
 
 }
