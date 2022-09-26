@@ -28,4 +28,8 @@ export class PagesService {
     return this.http.get(`${API_PATH}/products?description_contains=${name}`)
   }
 
+  all_products():Observable<any>{
+    return this.http.get(`${API_PATH}/products`)
+  }
+
 }

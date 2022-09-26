@@ -19,24 +19,24 @@ export class HeaderComponent implements OnInit {
 
   catergories = {
     "Network" : {
-        "Network Cameras" : [ "ColorVu", "AcuSense", "PRO", "Ultra", "Solar", "Special"],
-        "PTZ Cameras" : ["Pro", "Ultra", "Special"],
+        "Network" : [ "ColorVu", "AcuSense", "PRO", "Ultra", "Solar", "Special"],
+        "PTZ" : ["Pro", "Ultra", "Special"],
         "NVR" : ["4CH", "8CH", "16CH"]
     },
     "TurboHD" : { "Analogue/Turbo Cameras" : [], "DVR": [] },
     "Transmission" : {"Switches" : []},
     "Mobile" : {"Dashcam" : []},
     "Access Control" : {
-      "Readers" : [],
+      "Biometric Reader" : [],
       "Fingerprint" : [],
-      "Card Terminals": [],
+      "Card Reader": [],
       "Face Recognition": [],
-      "Controllers": [],
-      "Electrical Locks": []
+      "Controller": [],
+      "Electrical Lock": []
     },
     "Video Intercomm" : {},
-    "Alarm" : {"Panels" : [], "Detectors" : [], "Kits" : []},
-    "Accessories" : {},
+    "Alarm" : {"Monitors" : [], "Detectors" : [], "Kits" : []},
+    "Accessories" : {"Monitors": [], "Decoders": [], "Harddrives": [], "Workstation": []},
     "Software" : {"Licenses" : []}
   };
 

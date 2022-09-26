@@ -82,7 +82,7 @@
 
     <div class="products col-4">
       <ul>
-        <li *ngFor="let product of products">
+        <li style="list-style:none;" *ngFor="let product of products" (click)="getProducts(product)">
           {{product}}
         </li>
       </ul>

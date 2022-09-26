@@ -26,13 +26,28 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.actRoute.queryParams.subscribe(params => {
       this.header = params['cat'];
-      this.get_products()
+
+      if (this.header == 'all'){
+        this.header = 'All'
+        this.get_all()
+      }
+      else{
+        this.get_products()
+      }
+
     })
   }
 
   get_products(){
     this.service.catergories_using_contains(this.header).subscribe(data => {
       this.products = data[0].products
+    })
+  }
+
+  get_all(){
+    this.service.all_products().subscribe(data => {
+      this.products = data
+      console.log(data)
     })
   }
 

@@ -11,8 +11,8 @@
           Providing world <br> class security <br> systems
         </div>
         <div class="hero-button">
-          <button>SHOP OUR PRODUCTS</button>
-          <button>SEE OUR WORK</button>
+          <button (click)="get_all_products()">SHOP OUR PRODUCTS</button>
+          <a href="https://www.instagram.com/tg__security/"><button>SEE OUR WORK</button></a>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
           setting boundaries, people counting, differentiating between
            pets and kids e.t.c
         </p>
-        <button style="background-color: #c7be0f;">read more</button>
+        <button style="background-color: #c7be0f;"  (click)="showVid('acusense')">watch video <img src="../../../assets/images/play.png" height="20px" style="margin-left:10px"> </button>
       </div>
     </div>
 
@@ -49,19 +49,19 @@
         <div class="product col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/network.png" alt="" height="150px" >
           <h6>Network Cameras</h6>
-          <button>shop</button>
+          <button (click)="getProducts('NVR')">shop</button>
         </div>
 
         <div class="product col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/ptz.png" alt="" height="150px" >
           <h6>PTZ Cameras</h6>
-          <button>shop</button>
+          <button (click)="getProducts('PTZ')">shop</button>
         </div>
 
         <div class="product col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/nvr.png" alt="" height="150px" >
           <h6>Network Video Recorder</h6>
-          <button>shop</button>
+          <button (click)="getProducts('NVR')">shop</button>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
           It is useful in any situation where color of footage is
           important especially when its dark or theres poor lighting.
         </p>
-        <button style="background-color: #252E37;">read more</button>
+        <button style="background-color: #252E37;"  (click)="showVid('colorvu')">watch video <img src="../../../assets/images/play.png" height="20px" style="margin-left:10px"></button>
       </div>
     </div>
 
@@ -132,7 +132,7 @@
           alarm and allows the user to arm and disarm the alarm
           remotely using a mobile device.
         </p>
-        <button style="background-color: #252E37;">watch video</button>
+        <button style="background-color: #252E37;" (click)="showVid('axpro')">watch video <img src="../../../assets/images/play.png" height="20px" style="margin-left:10px"></button>
       </div>
       <div class="col-12 col-md-6 col-lg-6" style="display: flex; justify-content:end;">
         <img src="../../../assets/images/remote-viewing.png" alt="" height="250px" style="margin-bottom:-35px">
@@ -168,4 +168,10 @@
     </div>
 
   </div>
+</div>
+
+
+<div id="vid-modal" [ngStyle]="{ display : displayVid}">
+  <div style="float:right; font-size:large; color: white; margin: 10px;" (click)="hideVid()">X</div>
+  <iframe [src]="vidLink" frameborder="0" loading="lazy" allowfullscreen></iframe>
 </div>

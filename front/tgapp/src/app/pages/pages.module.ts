@@ -13,6 +13,9 @@ import { AlarmComponent } from './Products/alarm/alarm.component';
 import { AccessoriesComponent } from './Products/accessories/accessories.component';
 import { SoftwareComponent } from './Products/software/software.component';
 import { ProductsComponent } from './Products/products/products.component';
+import { ColovuComponent } from './colovu/colovu.component';
+import { AcusenseComponent } from './acusense/acusense.component';
+import { AxproComponent } from './axpro/axpro.component';
 
 
 @NgModule({
@@ -28,6 +31,9 @@ import { ProductsComponent } from './Products/products/products.component';
     AccessoriesComponent,
     SoftwareComponent,
     ProductsComponent,
+    ColovuComponent,
+    AcusenseComponent,
+    AxproComponent,
   ],
   imports: [
     CommonModule,
