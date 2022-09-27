@@ -11,6 +11,8 @@ import { AlarmComponent } from './Products/alarm/alarm.component';
 import { AccessoriesComponent } from './Products/accessories/accessories.component';
 import { SoftwareComponent } from './Products/software/software.component';
 import { ProductsComponent } from './Products/products/products.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,8 @@ const routes: Routes = [
   { path: 'Alarm', component: AlarmComponent},
   { path: 'Accessories', component: AccessoriesComponent},
   { path: 'Software', component: SoftwareComponent},
-  { path: 'products/', component: ProductsComponent}
+  { path: 'products/', component: ProductsComponent},
+  { path: 'search', component: SearchResultComponent},
 
 ];
 

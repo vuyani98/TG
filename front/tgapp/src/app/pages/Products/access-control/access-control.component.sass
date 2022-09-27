@@ -1,5 +1,5 @@
 .container
-  min-height: 80%
+  min-height: 80vh
   margin-top: 30px
   max-width: 1200px
   text-align: center
@@ -71,20 +71,21 @@
             font-size: small
 
           .buy-now
-            color: #13234e
-            border: 1px solid #13234E
+            background: radial-gradient(#8da4c7, #606dafd6)
             height: 30px
+            color: white
+            border: 2px solid #7695b5
             font-size: small
+            box-shadow: 2px 3px 5px 1px #cfcfcf
+            font-weight: bold
             border-radius: 9px
             display: flex
             align-items: center
             justify-content: center
-            padding: 8px
-            width: 120px
-            font-weight: 600
 
 
 .one-product
+  display: none
   position: fixed
   top: 0
   left: 0
@@ -128,6 +129,7 @@
         background: linear-gradient(45deg, #d8562e, #f00f0f)
 
 
-
-
-
+@media (max-width: 744px)
+  .one-product
+    margin: 20px
+    flex-wrap: wrap

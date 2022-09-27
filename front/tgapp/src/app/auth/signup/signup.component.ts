@@ -26,8 +26,6 @@ export class SignupComponent implements OnInit {
   onSubmit(): void {
     //process registration data here
     this.authService.register(this.registerForm.value).subscribe(res => {
-
-      console.log(res)
       return res
       })
     this.registerForm.reset()

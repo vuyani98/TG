@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   mobile_cart_display = "block";
   mobile_sub_display = "none";
   mobile_prod_display = "none";
+  mobile_menu_display = 'none'
 
   catergories = {
     "Network" : {
@@ -42,9 +44,9 @@ export class HeaderComponent implements OnInit {
 
   subcatergories = {};
   products = [];
+  searchForm = this.formBuilder.group({ term : ''})
 
-
-  constructor(private router: Router, private actRoute: ActivatedRoute) { }
+  constructor(private router: Router, private actRoute: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -53,6 +55,19 @@ export class HeaderComponent implements OnInit {
       if( this.mega_menu_display != "none"){
         this.mega_menu_display = "none";
       }
+
+      if( this.mobile_prod_display != "none"){
+        this.mobile_prod_display = "none";
+      }
+
+      if( this.mobile_sub_display != "none"){
+        this.mobile_sub_display = "none";
+      }
+
+      if( this.menu_display != "none"){
+        this.menu_display = "none";
+      }
+
     })
   }
 
@@ -77,6 +92,11 @@ export class HeaderComponent implements OnInit {
   //products function
   prods(products:any){
     this.products = products
+  }
+
+  search(){
+    this.router.navigateByUrl(`search?q=${this.searchForm.value.term}`)
+    this.searchForm.reset()
   }
 
   //re-route to home

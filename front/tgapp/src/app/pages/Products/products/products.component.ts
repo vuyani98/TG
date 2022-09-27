@@ -31,6 +31,7 @@ export class ProductsComponent implements OnInit {
         this.header = 'All'
         this.get_all()
       }
+
       else{
         this.get_products()
       }
@@ -39,8 +40,16 @@ export class ProductsComponent implements OnInit {
   }
 
   get_products(){
+
     this.service.catergories_using_contains(this.header).subscribe(data => {
-      this.products = data[0].products
+
+      if (this.header == 'PTZ'){
+        this.products = data[1].products;
+        this.products.push(data[0].products);
+      }
+      else{
+       this.products = data[0].products;
+      }
     })
   }
 

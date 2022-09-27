@@ -5,7 +5,7 @@
     <div class="slide slide1">
       <div class="content">
         <div class="sub-heading">
-          <h6>HIKVISION AUTHORISED RESELLER</h6>
+          <img src="../../../assets/images/hiklogo.png" alt="" width="50%" height="auto" style="max-width: 200px;">
         </div>
         <div class="hero-header">
           Providing world <br> class security <br> systems
@@ -49,7 +49,7 @@
         <div class="product col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/network.png" alt="" height="150px" >
           <h6>Network Cameras</h6>
-          <button (click)="getProducts('NVR')">shop</button>
+          <button (click)="getProducts('Network')">shop</button>
         </div>
 
         <div class="product col-12 col-md-4 col-lg-3">
@@ -90,30 +90,13 @@
       <h5>Recommended Products</h5>
       <div class="products">
 
-        <div class="product col-12 col-md-4 col-lg-3">
-          <img src="../../../assets/images/4Kcolorvu.png" alt="" height="150px" >
-          <h6>4K ColorVu PoC Fixed
-            Bullet Cameras</h6>
-            <h6 class="price">R600</h6>
-          <button>add to cart</button>
+        <div class="product col-12 col-md-4 col-lg-3" *ngFor="let product of colorProducts">
+          <img src="{{product.image_url}}" alt="" width=auto  height=100px style="margin-bottom:10px;">
+          <h6 style="font-size: smaller;">{{product.product_code}}</h6>
+            <h6 class="price">{{product.retail_price}}</h6>
+          <button (click)="show_one(product.id)">add to cart</button>
         </div>
 
-        <div class="product col-12 col-md-4 col-lg-3">
-          <img src="../../../assets/images/speed dome.png" alt="" height="150px" >
-          <h6>3-inch 4 MP ColorVu
-            Network Speed Dome</h6>
-            <h6 class="price">R800</h6>
-          <button>add to cart</button>
-        </div>
-
-        <div class="product col-12 col-md-4 col-lg-3">
-          <img src="../../../assets/images/turret.png" alt="" height="150px" >
-          <h6>4 MP ColorVu Strobe Light
-            and Audible Warning Fixed
-           Turret Network Camera</h6>
-           <h6 class="price">R900</h6>
-          <button>add to cart</button>
-        </div>
       </div>
     </div>
 
@@ -145,24 +128,21 @@
       <div class="products">
 
         <div class="product col-12 col-md-4 col-lg-3">
-          <img src="../../../assets/images/axpro1.png" alt="" height="150px" >
-          <h6>DS-PWA64-Kit-WE</h6>
-            <h6 class="price">R3600</h6>
-          <button>add to cart</button>
+          <img src="../../../assets/images/panel.png" alt="" height="120px" width="auto">
+          <h6>Panels</h6>
+          <button (click)="getProducts('Panels')">view products</button>
         </div>
 
         <div class="product col-12 col-md-4 col-lg-3">
-          <img src="../../../assets/images/axpro1.png" alt="" height="150px" >
-          <h6>DS-PWA96-Kit-WE</h6>
-            <h6 class="price">R4200</h6>
-          <button>add to cart</button>
+          <img src="../../../assets/images/detector.png" alt="" height="120px"width="auto">
+          <h6>Detectors</h6>
+          <button (click)="getProducts('Detectors')">view products</button>
         </div>
 
         <div class="product col-12 col-md-4 col-lg-3">
-          <img src="../../../assets/images/axpro1.png" alt="" height="150px" >
-          <h6>DS-PWA96-Kit-WB</h6>
-           <h6 class="price">R3400</h6>
-          <button>add to cart</button>
+          <img src="../../../assets/images/kit.png" alt="" height="120px"  width="auto">
+          <h6>Kits</h6>
+          <button (click)="getProducts('Kits')">view products</button>
         </div>
       </div>
     </div>
@@ -174,4 +154,30 @@
 <div id="vid-modal" [ngStyle]="{ display : displayVid}">
   <div style="float:right; font-size:large; color: white; margin: 10px;" (click)="hideVid()">X</div>
   <iframe [src]="vidLink" frameborder="0" loading="lazy" allowfullscreen></iframe>
+</div>
+
+
+<div class="one-product" [ngStyle]="{display : one_product_display}">
+
+  <div class="col-12 col-sm-12 col-md-6 col-lg-6 image" >
+    <img src="{{one_product.image_url}}" alt="" width="90% ">
+  </div>
+
+  <div class="product-info">
+    <div (click)="close_prod()" style="float: right">X</div>
+    <h3>{{one_product.product_code}}</h3>
+    <p>{{one_product.supplier_code}}</p>
+    <br>
+    <div>
+      <p>{{one_product.description}}</p>
+    </div>
+    <div>
+      <h5 style="margin-top:50px">{{one_product.price}}</h5>
+      <div class="buttons">
+        <button class="add-to-cart">Add to cart</button>
+        <button class="checkout">Checkout</button>
+      </div>
+    </div>
+  </div>
+
 </div>

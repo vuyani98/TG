@@ -39,8 +39,8 @@
 
 
       <div id="search">
-        <form action="">
-          <input type="text" placeholder="SEARCH PRODUCTS">
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+          <input formControlName="term" type="text" placeholder="SEARCH PRODUCTS">
           <button type="submit"><img src="../../../../assets/images/search.png" height="30px"></button>
         </form>
       </div>
@@ -91,7 +91,7 @@
 
 </div>
 
-<div id="mobile-menu">
+<div id="mobile-menu" >
 
   <div class="top">
 
@@ -107,7 +107,7 @@
     <div class="center col-4">
 
       <div id="logo">
-        <img src="../../../../assets/images/white.png" alt="" height="65px">
+        <a href="/"><img src="../../../../assets/images/white.png" alt="" height="65px"></a>
       </div>
 
     </div>
@@ -123,7 +123,7 @@
 
     <div class="left col-4">
       <div class="icon"> <img src="../../../../assets/images/account.png" height="25px"> </div>
-      <div class="title">ACCOUNT</div>
+      <a routerLink="/auth/login"><div class="title">ACCOUNT</div></a>
     </div>
 
     <div class="center col-4"  (click)="show_popup('products')">
@@ -142,22 +142,22 @@
 
 <div class="menu-popup" [ngStyle]="{display : menu_display}">
   <ul>
-    <li>SHOP ALL PRODUCTS</li>
+    <li (click)="getProducts('all')">SHOP ALL PRODUCTS</li>
     <li>CHECKOUT</li>
   </ul>
   <hr style=" opacity: 0.5 !important; background-color: #13234E; width: 70%; margin-right: auto; margin-left: auto;">
   <ul>
-    <li>ABOUT US</li>
-    <li>BLOGS</li>
+    <!-- <li>ABOUT US</li> -->
+    <!-- <li>BLOGS</li> -->
   </ul>
   <hr style=" opacity: 0.5 !important; background-color: #13234E; width: 70%; margin-right: auto; margin-left: auto;">
   <div>
     FOLLOW US
     <br>
     <div>
-      <img src="../../../../assets/images/fb.png" alt="" height="30px" style="margin: 5px;">
-      <img src="../../../../assets/images/ig.png" alt="" height="30px" style="margin: 5px;">
-      <img src="../../../../assets/images/tw.png" alt="" height="30px" style="margin: 5px;">
+      <a href="https://www.facebook.com/true.guardian55"><img src="../../../../assets/images/fb.png" alt="" height="30px" style="margin: 5px;"></a>
+      <a href="https://www.instagram.com/tg__security/"><img src="../../../../assets/images/ig.png" alt="" height="30px" style="margin: 5px;"></a>
+      <a href="https://twitter.com/tg__security/"><img src="../../../../assets/images/tw.png" alt="" height="30px" style="margin: 5px;"></a>
     </div>
     <strong>+27 101 402 628</strong>
   </div>
@@ -171,25 +171,25 @@
 <div class="products-popup" [ngStyle]="{display : products_display}">
 
   <div class="mobile-catergories" [ngStyle]="{display : mobile_cart_display}">
-    <strong>CATERGORIES</strong>
+    <span style="letter-spacing: 9px;">CATERGORIES</span>
     <ul>
-      <li *ngFor="let cart of catergories | keyvalue" (click)="mobile_subs(cart.value)">
-        {{ cart.key }} <strong>></strong>
+      <li *ngFor="let cart of catergories | keyvalue">
+       <a href="{{cart.key}}">{{ cart.key }} </a> <strong (click)="mobile_subs(cart.value)" >></strong>
       </li>
     </ul>
   </div>
 
   <div class="mobile-sub-catergories" [ngStyle]="{display : mobile_sub_display}">
-    <strong (click)="mobile_subs()">SUB-CATERGORIES < </strong>
+    <span (click)="mobile_subs()" style="letter-spacing: 9px">SUB-CATERGORIES < </span>
     <ul>
-      <li *ngFor="let sub of subcatergories | keyvalue" (click)="mobile_prod(sub.value)">
-        {{sub.key}} <strong>></strong>
+      <li *ngFor="let sub of subcatergories | keyvalue" (click)="getProducts(sub.key)">
+        {{sub.key}} <strong (click)="mobile_prod(sub.value)">></strong>
       </li>
     </ul>
   </div>
 
   <div class="mobile-products" [ngStyle]="{display : mobile_prod_display}">
-    <strong (click)="mobile_prod()">PRODUCTS < </strong>
+    <span (click)="mobile_prod()" style="letter-spacing: 9px">PRODUCTS < </span>
     <ul>
       <li *ngFor="let prod of products">
         {{prod}}

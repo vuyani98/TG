@@ -15,10 +15,20 @@ export class LandingPageComponent implements OnInit {
   colorvu = 'https://www.youtube.com/embed/sn_DFZJCc7U';
   acusense = 'https://www.youtube.com/embed/7nbch_TQEA0';
   axpro = 'https://www.youtube.com/embed/OeGQDqtzrz8';
+  colorProducts:any = [];
+  one_product = {
+    image_url: '',
+    product_code: '',
+    price: '',
+    description:'',
+    supplier_code: ''
+  };
+  one_product_display: string = 'none'
 
   constructor(private service: PagesService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.getcolorVu()
   }
 
   get_all_products(){
@@ -48,8 +58,44 @@ export class LandingPageComponent implements OnInit {
     this.displayVid = 'None'
   }
 
+  getcolorVu(){
+    this.service.products_using_name('ColorVu').subscribe(data => {
+      this.colorProducts.push(data[0].products[2]);
+      this.colorProducts.push(data[0].products[4]);
+      this.colorProducts.push(data[0].products[7]);
+      console.log(this.colorProducts)
+    })
+  }
+
   getProducts(cat:string){
     this.router.navigateByUrl(`/products/?cat=${cat}`);
+  }
+
+  show_one(id:number){
+
+    for (let i=0; i<this.colorProducts.length; i++){
+
+      if(id==this.colorProducts[i].id){
+        console.log(`${this.colorProducts[i]['product_code']}`)
+        this.one_product['image_url'] = this.colorProducts[i]['image_url'];
+        this.one_product['description'] = this.colorProducts[i]['description'];
+        this.one_product['product_code'] = this.colorProducts[i]['product_code'];
+        this.one_product['supplier_code'] = this.colorProducts[i]['supplier_code'];
+        this.one_product['price'] = this.colorProducts[i]['retail_price'];
+
+        this.one_product_display = 'flex'
+
+        break;
+      }
+
+    }
+
+
+
+  }
+
+  close_prod(){
+    this.one_product_display = 'none'
   }
 
 
