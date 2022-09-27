@@ -92,10 +92,10 @@ module.exports = async () => {
                       }
 
                     })
-                }) */ 
+                }) */
 
   //add alarm products
-   /*CSVTOJSON().fromFile('./data/alarm.csv')
+  /*CSVTOJSON().fromFile('./data/alarm.csv')
                 .then( async (table) => {
 
                     table.forEach(async(product) => {
@@ -134,7 +134,7 @@ module.exports = async () => {
                                 catArray.push(cat);
                                 //console.log(`new cat array : ${catArray}`);
                                 //if(i == (catergories.length-1)){
-                                  //add_cat(if_prod, prod, catArray); 
+                                  //add_cat(if_prod, prod, catArray);
                               }
                               return cat;
                             })
@@ -149,13 +149,9 @@ module.exports = async () => {
 
                           }
                         }
-
-
                       }
-
                     })
-                })
-              */
+                })*/
 
     //add access products
     /*CSVTOJSON().fromFile('./data/access.csv')
@@ -197,7 +193,7 @@ module.exports = async () => {
                                 catArray.push(cat);
                                 //console.log(`new cat array : ${catArray}`);
                                 //if(i == (catergories.length-1)){
-                                  //add_cat(if_prod, prod, catArray); 
+                                  //add_cat(if_prod, prod, catArray);
                               }
                               return cat;
                             })
@@ -212,12 +208,9 @@ module.exports = async () => {
 
                           }
                         }
-
-
                       }
-
                     })
-                }) */
+                })*/
 
       //add intercomm products
       /*CSVTOJSON().fromFile('./data/Intercomm.csv')
@@ -259,7 +252,7 @@ module.exports = async () => {
                                 catArray.push(cat);
                                 //console.log(`new cat array : ${catArray}`);
                                 //if(i == (catergories.length-1)){
-                                  //add_cat(if_prod, prod, catArray); 
+                                  //add_cat(if_prod, prod, catArray);
                               }
                               return cat;
                             })
@@ -274,12 +267,9 @@ module.exports = async () => {
 
                           }
                         }
-
-
                       }
-
                     })
-                }) */
+                })*/
 
       //add accessories
       /*CSVTOJSON().fromFile('./data/accessories.csv')
@@ -321,7 +311,7 @@ module.exports = async () => {
                                 catArray.push(cat);
                                 //console.log(`new cat array : ${catArray}`);
                                 //if(i == (catergories.length-1)){
-                                  //add_cat(if_prod, prod, catArray); 
+                                  //add_cat(if_prod, prod, catArray);
                               }
                               return cat;
                             })
@@ -336,12 +326,9 @@ module.exports = async () => {
 
                           }
                         }
-
-
                       }
-
                     })
-                }) */
+                })*/
 }
 
 async function create_product(product, name, image_url, if_prod) {
