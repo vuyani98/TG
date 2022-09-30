@@ -25,7 +25,7 @@ export class AccessControlComponent implements OnInit {
   ngOnInit(): void {
     this.service.products_using_name('Access Control').subscribe(data => {
       console.log(data)
-      this.products = data[0].products;
+      this.products = data.data;
       console.log(this.products)
     });
   }

@@ -1,3 +1,4 @@
 export const environment = {
-  production: false
+  production: false,
+  API_PATH: 'https://strapi-erjo.onrender.com'
 };
