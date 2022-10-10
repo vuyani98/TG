@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { PagesService } from '../pages.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CarouselComponent } from 'angular-responsive-carousel';
+import { localizedString } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-landing-page',
@@ -23,12 +25,23 @@ export class LandingPageComponent implements OnInit {
     description:'',
     supplier_code: ''
   };
+  products: any[] = [];
   one_product_display: string = 'none'
+
 
   constructor(private service: PagesService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.getcolorVu()
+    this.getcolorVu();
+    this.service.products_using_name('Analogue/Turbo').subscribe(data => {
+      let raw_products = data.data[0].attributes.products.data;
+
+      for(let i=0; i<raw_products.length;i++){
+        this.products[i] = raw_products[i].attributes
+        this.products[i]['id'] = raw_products[i].id
+      }
+    })
+
   }
 
   get_all_products(){
@@ -60,10 +73,16 @@ export class LandingPageComponent implements OnInit {
 
   getcolorVu(){
     this.service.products_using_name('ColorVu').subscribe(data => {
-      this.colorProducts.push(data[0].products[2]);
-      this.colorProducts.push(data[0].products[4]);
-      this.colorProducts.push(data[0].products[7]);
-      console.log(this.colorProducts)
+      let raw_products = data.data[0].attributes.products.data;
+
+      this.colorProducts[0] = raw_products[2].attributes;
+      this.colorProducts[0]['id'] = raw_products[2].id
+
+      this.colorProducts[1] = raw_products[4].attributes;
+      this.colorProducts[1]['id'] = raw_products[4].id;
+
+      this.colorProducts[2] = raw_products[8].attributes;
+      this.colorProducts[2]['id'] = raw_products[8].id;
     })
   }
 
@@ -96,6 +115,21 @@ export class LandingPageComponent implements OnInit {
 
   close_prod(){
     this.one_product_display = 'none'
+  }
+
+  addtocart(product:any){
+    let cartlist = localStorage.getItem('cart');
+    let newItem = JSON.stringify(product);
+
+    if(cartlist==''){
+      cartlist = cartlist+newItem;
+    }
+    else{
+      cartlist = cartlist+','+newItem;
+    }
+    let x = window.open("", "myWindow", "width=1,height=1");
+    x?.localStorage.setItem('cart', cartlist);
+    x?.close();
   }
 
 

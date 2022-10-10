@@ -2,17 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tgapp</title>
+  <title>TG Security Systems</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <script>
+      var yoco = new window.YocoSDK({
+        publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
+      });
+      window.addEventListener('storage', () => {
+      console.log('changes')
+      let listen2pay = localStorage.getItem('listen2pay');
+      console.log(listen2pay)
+    })
+
+    window.onpopstate = () => {
+      var checkoutButton = document.querySelector("#checkout-button");
+       if (checkoutButton){
+        checkoutButton.setAttribute('onclick', clickos())
+       }
+    }
+
+    function clickos (){
+      let amount = Number(localStorage.getItem('total').replace(/[^0-9-]+/g,""));
+      yoco.showPopup({
+      amountInCents: amount,
+      currency: 'ZAR',
+      name: 'TG Security Systems',
+      description: '',
+      callback: function (result) {
+        // This function returns a token that your server can use to capture a payment
+        if (result.error) {
+          const errorMessage = result.error.message;
+          alert("error occured: " + errorMessage);
+        } else {
+          alert("card successfully tokenised: " + result.id);
+        }
+        // In a real integration - you would now pass this chargeToken back to your
+        // server along with the order/basket that the customer has purchased.
+      }
+    })
+    }
+
+    </script>
+  </app-root>
 </body>
 </html>

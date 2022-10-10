@@ -32,7 +32,7 @@
             <a routerLink="/auth/login" routerLinkActive="active">ACCOUNT</a>
           </li>
           <li>
-            <a routerLink="" routerLinkActive="active">CART</a>
+            <a routerLink="cart" routerLinkActive="active">CART <sup _ngcontent-wgq-c51="" style="background: #769fb8; border-radius: 45%;color: white;font-weight: bold;padding-left: 4px;padding-right: 4px;">{{ cartLength }}</sup></a>
           </li>
         </ul>
       </div>
@@ -95,7 +95,7 @@
 
   <div class="top">
 
-    <div class="left col-4" style="display: flex; justify-content: center; flex-direction: column;" (click)="show_popup('menu')">
+    <div class="left col-3" style="display: flex; justify-content: center; flex-direction: column;" (click)="show_popup('menu')">
       <div class="icon" style="margin-top: 25px;">
         <div class="burger" >
           <div class="burger-menu"></div>
@@ -104,7 +104,7 @@
       <div class="title">MENU</div>
     </div>
 
-    <div class="center col-4">
+    <div class="center col-6">
 
       <div id="logo">
         <a href="/"><img src="../../../../assets/images/white.png" alt="" height="65px"></a>
@@ -112,8 +112,8 @@
 
     </div>
 
-    <div class="right col-4"  (click)="show_popup('cart')">
-      <div class="icon"> <img src="../../../../assets/images/cart.png" height="25px"> </div>
+    <div class="right col-3"  (click)="show_popup('cart')">
+      <div class="icon"> <img src="../../../../assets/images/cart.png" height="20px"> </div>
       <div class="title">CART</div>
     </div>
 
@@ -163,18 +163,13 @@
   </div>
 </div>
 
-<div class="cart-popup" [ngStyle]="{display : cart_display}">
-  cart works!
-</div>
-
-
 <div class="products-popup" [ngStyle]="{display : products_display}">
 
   <div class="mobile-catergories" [ngStyle]="{display : mobile_cart_display}">
     <span style="letter-spacing: 9px;">CATERGORIES</span>
     <ul>
       <li *ngFor="let cart of catergories | keyvalue">
-       <a href="{{cart.key}}">{{ cart.key }} </a> <strong (click)="mobile_subs(cart.value)" >></strong>
+       <a routerLink="{{cart.key}}">{{ cart.key }} </a> <strong (click)="mobile_subs(cart.value)" >></strong>
       </li>
     </ul>
   </div>
@@ -201,8 +196,8 @@
 </div>
 
 <div class="search-popup" [ngStyle]="{display : search_display}">
-    <form action="">
-      <input type="text" placeholder="SEARCH PRODUCTS">
+    <form [formGroup]="searchForm" (ngSubmit)="search()">
+      <input formControlName="term" type="text" placeholder="SEARCH PRODUCTS">
       <button type="submit"><img src="../../../../assets/images/search.png" height="25px"></button>
     </form>
 </div>

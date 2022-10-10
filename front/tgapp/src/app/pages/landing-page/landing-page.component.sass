@@ -16,7 +16,7 @@
         padding: 20px
         margin-left: auto
         margin-right: auto
-        margin-top: 100px
+        margin-top: 70px
 
         .sub-heading
           font-family: "Poppins"
@@ -33,7 +33,7 @@
             padding: 7px
             color: white
             margin-right: 25px
-            margin-top: 40px
+            margin-top: 25px
             font-weight: 600
 
     .slide1
@@ -62,7 +62,8 @@
 
   .axpro
     .banner
-      background: linear-gradient(90deg,#264550d0, #eecb0600), url('../../../assets/images/axpro.png')
+      background: linear-gradient(90deg,#264550d0, #066aee3d), url('../../../assets/images/axpro.png')
+      background-position: left
 
 
   .banner
@@ -91,7 +92,6 @@
       width: 150px
       color: white
       font-weight: 600
-      display:flex
       justify-content: center
 
   .recommended
@@ -105,7 +105,7 @@
       .product
         margin: 25px
         padding: 20px
-        box-shadow: 5px 7px 17px 4px rgba(0, 0, 0, 0.11)
+        box-shadow: -1px -2px 17px 4px rgb(0 0 0 / 2%) inset
 
       .price
         color: #28A525
@@ -116,7 +116,6 @@
 
 #vid-modal
   position: fixed
-  right: 0
   bottom: 0
   background: #0000007c
   width: fit-content
@@ -127,8 +126,7 @@
   display: None
   position: fixed
   top: 0
-  left: 0
-  height: 85vh
+  height: 80vh
   background: #000000bf
   z-index: 1
   margin: 50px
@@ -170,5 +168,11 @@
 
 @media (max-width: 744px)
   .one-product
-    margin: 20px
+    margin: 10px
     flex-wrap: wrap
+
+  .hero-header
+    font-size: 28px !important
+
+  .hero-button
+    font-size: 14px

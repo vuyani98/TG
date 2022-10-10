@@ -10,7 +10,7 @@ import { PagesService } from '../pages.service';
 export class SearchResultComponent implements OnInit {
 
   header:string = '';
-  products: any;
+  products: any[] = [];
   catergories: any
   one_product = {
     image_url: '',
@@ -27,7 +27,11 @@ export class SearchResultComponent implements OnInit {
     this.actRoute.queryParams.subscribe(params => {
       this.header = params['q'];
       this.service.products_using_contains(this.header).subscribe(data => {
-        this.products = data;
+        console.log(data)
+        for(let i=0; i<data.data.length;i++){
+          this.products[i] = data.data[i].attributes
+          this.products[i]['id'] = data.data[i].id
+        }
       })
     })
   }
@@ -53,6 +57,20 @@ export class SearchResultComponent implements OnInit {
 
   close_prod(){
     this.one_product_display = 'none'
+  }
+  addtocart(product:any){
+    let cartlist = localStorage.getItem('cart');
+    let newItem = JSON.stringify(product);
+
+    if(cartlist==''){
+      cartlist = cartlist+newItem;
+    }
+    else{
+      cartlist = cartlist+','+newItem;
+    }
+    let x = window.open("", "myWindow", "width=1,height=1");
+    x?.localStorage.setItem('cart', cartlist);
+    x?.close();
   }
 
 }

@@ -92,7 +92,7 @@ module.exports = async () => {
                       }
 
                     })
-                }) */
+                })
 
   //add alarm products
   /*CSVTOJSON().fromFile('./data/alarm.csv')

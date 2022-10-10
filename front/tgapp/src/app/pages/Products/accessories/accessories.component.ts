@@ -9,7 +9,7 @@ import { PagesService } from '../../pages.service';
 })
 export class AccessoriesComponent implements OnInit {
 
-  products: any;
+  products: any =[];
   catergories: any
   one_product = {
     image_url: '',
@@ -24,7 +24,12 @@ export class AccessoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.products_using_name('Accessories').subscribe(data => {
-      this.products = data[0].products;
+      let raw_products = data.data[0].attributes.products.data;
+
+      for(let i=0; i<raw_products.length;i++){
+        this.products[i] = raw_products[i].attributes
+        this.products[i]['id'] = raw_products[i].id
+      }
     })
   }
 
@@ -49,6 +54,21 @@ export class AccessoriesComponent implements OnInit {
 
   close_prod(){
     this.one_product_display = 'none'
+  }
+
+  addtocart(product:any){
+    let cartlist = localStorage.getItem('cart');
+    let newItem = JSON.stringify(product);
+
+    if(cartlist==''){
+      cartlist = cartlist+newItem;
+    }
+    else{
+      cartlist = cartlist+','+newItem;
+    }
+    let x = window.open("", "myWindow", "width=1,height=1");
+    x?.localStorage.setItem('cart', cartlist);
+    x?.close();
   }
 
 }

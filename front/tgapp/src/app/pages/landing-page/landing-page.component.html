@@ -5,7 +5,7 @@
     <div class="slide slide1">
       <div class="content">
         <div class="sub-heading">
-          <img src="../../../assets/images/hiklogo.png" alt="" width="50%" height="auto" style="max-width: 200px;">
+          <img src="../../../assets/images/hiklogo.png" alt="" width="50%" height="auto" style="max-width: 200px; margin-bottom:20px">
         </div>
         <div class="hero-header">
           Providing world <br> class security <br> systems
@@ -22,6 +22,23 @@
 
 </div>
 <div class="container">
+
+  <div class="recommended">
+    <h4>Popular Products</h4>
+    <carousel [autoplay]="true" [cellsToShow]="1" [cellWidth]="200" [height]="350" style="margin-top: 30px;">
+      <div class="carousel-cell products" *ngFor="let product of products">
+        <div class="product" >
+          <div style="height: 150px;">
+            <img src="{{product.image_url}}" alt="" width=150px  height=100px style="margin-bottom:10px;">
+          </div>
+
+          <h6 style="font-size: smaller;">{{product.product_code}}</h6>
+            <h6 class="price" (click)="show_one(product.id)">{{product.retail_price}}</h6>
+            <a (click)="show_one(product.id)" ><button [disabled]="false">add to cart</button></a>
+        </div>
+      </div>
+  </carousel>
+  </div>
 
   <div class="technology acusense">
     <h4>AcuSense</h4>
@@ -46,19 +63,19 @@
       <h5>Recommended Products</h5>
       <div class="products">
 
-        <div class="product col-12 col-md-4 col-lg-3">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/network.png" alt="" height="150px" >
           <h6>Network Cameras</h6>
           <button (click)="getProducts('Network')">shop</button>
         </div>
 
-        <div class="product col-12 col-md-4 col-lg-3">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/ptz.png" alt="" height="150px" >
           <h6>PTZ Cameras</h6>
           <button (click)="getProducts('PTZ')">shop</button>
         </div>
 
-        <div class="product col-12 col-md-4 col-lg-3">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/nvr.png" alt="" height="150px" >
           <h6>Network Video Recorder</h6>
           <button (click)="getProducts('NVR')">shop</button>
@@ -90,7 +107,7 @@
       <h5>Recommended Products</h5>
       <div class="products">
 
-        <div class="product col-12 col-md-4 col-lg-3" *ngFor="let product of colorProducts">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3" *ngFor="let product of colorProducts">
           <img src="{{product.image_url}}" alt="" width=auto  height=100px style="margin-bottom:10px;">
           <h6 style="font-size: smaller;">{{product.product_code}}</h6>
             <h6 class="price">{{product.retail_price}}</h6>
@@ -103,11 +120,10 @@
   </div>
 
   <div class="technology axpro">
-    <h4>AX Pro</h4>
+    <h4>AX Pro Series</h4>
 
     <div class="banner">
       <div class="col-12 col-md-6 col-lg-6">
-
         <p>
           Ax pro intruder alarm is one of the most innovative
           wireless alarm systems out right now.  It gives the
@@ -118,7 +134,6 @@
         <button style="background-color: #252E37;" (click)="showVid('axpro')">watch video <img src="../../../assets/images/play.png" height="20px" style="margin-left:10px"></button>
       </div>
       <div class="col-12 col-md-6 col-lg-6" style="display: flex; justify-content:end;">
-        <img src="../../../assets/images/remote-viewing.png" alt="" height="250px" style="margin-bottom:-35px">
       </div>
 
     </div>
@@ -127,19 +142,19 @@
       <h5>Recommended Products</h5>
       <div class="products">
 
-        <div class="product col-12 col-md-4 col-lg-3">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/panel.png" alt="" height="120px" width="auto">
           <h6>Panels</h6>
           <button (click)="getProducts('Panels')">view products</button>
         </div>
 
-        <div class="product col-12 col-md-4 col-lg-3">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/detector.png" alt="" height="120px"width="auto">
           <h6>Detectors</h6>
           <button (click)="getProducts('Detectors')">view products</button>
         </div>
 
-        <div class="product col-12 col-md-4 col-lg-3">
+        <div class="product col-xs-12 col-12 col-md-4 col-lg-3">
           <img src="../../../assets/images/kit.png" alt="" height="120px"  width="auto">
           <h6>Kits</h6>
           <button (click)="getProducts('Kits')">view products</button>
@@ -174,8 +189,8 @@
     <div>
       <h5 style="margin-top:50px">{{one_product.price}}</h5>
       <div class="buttons">
-        <button class="add-to-cart">Add to cart</button>
-        <button class="checkout">Checkout</button>
+        <button class="add-to-cart" (click)="addtocart(one_product)">Add to cart</button>
+        <a routerLink="/cart"><button class="checkout">Checkout</button></a>
       </div>
     </div>
   </div>
